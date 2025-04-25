@@ -1,4 +1,3 @@
-# lula3
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -40,6 +39,9 @@
             from, to { border-color: transparent }
             50% { border-color: #FF6B00; }
         }
+        .hidden-section {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -52,28 +54,35 @@
                     <span class="text-2xl font-bold">MathMaster</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="hover:text-gray-200">Главная</a>
-                    <a href="#" class="hover:text-gray-200">Теория</a>
-                    <a href="#" class="hover:text-gray-200">Практика</a>
-                    <a href="#" class="hover:text-gray-200">О проекте</a>
+                    <a href="#home" class="hover:text-gray-200 nav-link active">Главная</a>
+                    <a href="#theory" class="hover:text-gray-200 nav-link">Теория</a>
+                    <a href="#practice" class="hover:text-gray-200 nav-link">Практика</a>
+                    <a href="#about" class="hover:text-gray-200 nav-link">О проекте</a>
                 </div>
-                <button class="md:hidden focus:outline-none">
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
+            </div>
+            <!-- Мобильное меню -->
+            <div class="md:hidden hidden mt-4" id="mobile-menu">
+                <a href="#home" class="block py-2 hover:text-gray-200 nav-link active">Главная</a>
+                <a href="#theory" class="block py-2 hover:text-gray-200 nav-link">Теория</a>
+                <a href="#practice" class="block py-2 hover:text-gray-200 nav-link">Практика</a>
+                <a href="#about" class="block py-2 hover:text-gray-200 nav-link">О проекте</a>
             </div>
         </div>
     </nav>
 
     <!-- Герой-секция -->
-    <section class="gradient-bg text-white py-20">
+    <section id="home" class="gradient-bg text-white py-20">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-5xl font-bold mb-6">Освой уравнения высших степеней</h1>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Интерактивное обучение методам решения уравнений от кубических до уравнений n-ной степени</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button class="bg-white text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
+                <button id="start-learning-btn" class="bg-white text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
                     Начать обучение
                 </button>
-                <button class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-orange-600 transition duration-300">
+                <button id="learn-more-btn" class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-orange-600 transition duration-300">
                     Узнать больше
                 </button>
             </div>
@@ -81,7 +90,7 @@
     </section>
 
     <!-- Блоки обучения -->
-    <section class="py-16 bg-white">
+    <section id="methods" class="py-16 bg-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Методы решения уравнений</h2>
             
@@ -93,7 +102,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Формулы сокращенного умножения</h3>
                     <p class="text-gray-600 mb-4">Использование ФСУ для разложения на множители и решения уравнений.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="fsu">
                         Изучить метод →
                     </button>
                 </div>
@@ -105,7 +114,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Метод группировки</h3>
                     <p class="text-gray-600 mb-4">Эффективный способ решения путем группировки слагаемых.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="grouping">
                         Изучить метод →
                     </button>
                 </div>
@@ -117,7 +126,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Схема Горнера</h3>
                     <p class="text-gray-600 mb-4">Алгоритм деления многочлена на линейный двучлен.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="horner">
                         Изучить метод →
                     </button>
                 </div>
@@ -129,10 +138,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Теорема Безу</h3>
                     <p class="text-gray-600 mb-4">Связь между корнями уравнения и делимостью многочлена.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="bezout">
                         Изучить метод →
                     </button>
-</div>
+                </div>
                 
                 <!-- Карточка 5 -->
                 <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
@@ -141,7 +150,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Замена переменной</h3>
                     <p class="text-gray-600 mb-4">Упрощение уравнения путем введения новой переменной.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="substitution">
                         Изучить метод →
                     </button>
                 </div>
@@ -153,7 +162,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Биквадратные уравнения</h3>
                     <p class="text-gray-600 mb-4">Специальный случай уравнений четвертой степени.</p>
-                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="biquadratic">
                         Изучить метод →
                     </button>
                 </div>
@@ -162,7 +171,7 @@
     </section>
 
     <!-- Пример решения -->
-    <section class="py-16 bg-gray-50">
+    <section id="practice" class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Пример решения уравнения</h2>
             
@@ -175,14 +184,14 @@
                         </div>
                         
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Ваше решение:</h3>
-                        <input type="text" placeholder="Введите корни через запятую" 
+                        <input type="text" id="solution-input" placeholder="Введите корни через запятую" 
                                class="solution-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500">
                         
                         <div class="flex space-x-4 mt-6">
-                            <button class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition duration-300">
+                            <button id="check-solution-btn" class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition duration-300">
                                 Проверить
                             </button>
-                            <button class="border border-orange-600 text-orange-600 px-6 py-2 rounded-lg hover:bg-orange-50 transition duration-300">
+                            <button id="hint-btn" class="border border-orange-600 text-orange-600 px-6 py-2 rounded-lg hover:bg-orange-50 transition duration-300">
                                 Подсказка
                             </button>
                         </div>
@@ -191,7 +200,7 @@
                     <div class="md:w-1/2 p-4">
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Пошаговое решение:</h3>
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                            <ol id="solution-steps" class="list-decimal pl-5 space-y-3 text-gray-700 hidden-section">
                                 <li>Проверим x=1: 1 - 6 + 11 - 6 = 0 ⇒ x=1 корень</li>
                                 <li>Разделим многочлен на (x-1) по схеме Горнера</li>
                                 <li>Получаем: (x-1)(x² - 5x + 6) = 0</li>
@@ -199,13 +208,13 @@
                                 <li>Корни: x=2 и x=3</li>
                                 <li class="font-bold">Ответ: x ∈ {1, 2, 3}</li>
                             </ol>
+                            <div id="hint-text" class="hidden-section">
+                                <p class="text-gray-700">Попробуйте подставить x=1 в уравнение. Если результат равен 0, то это корень.</p>
+                            </div>
                         </div>
                         
-                        <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
-                                <span class="font-medium text-green-800">Правильно! Вы нашли все корни.</span>
-                            </div>
+                        <div id="result-message" class="mt-6 p-4 hidden-section">
+                            <!-- Здесь будет отображаться результат проверки -->
                         </div>
                     </div>
                 </div>
@@ -214,7 +223,7 @@
     </section>
 
     <!-- Теоретическая справка -->
-    <section class="py-16 bg-white">
+    <section id="theory" class="py-16 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
@@ -252,7 +261,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
+                    <button id="full-theory-btn" class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
                         Читать полную теорию
                     </button>
                 </div>
@@ -266,7 +275,7 @@
                             Наш тренажер содержит более 100 уравнений разного уровня сложности с пошаговыми решениями.
                         </p>
                         <div class="text-center">
-                            <button class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
+                            <button id="start-practice-btn" class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
                                 Начать практику
                             </button>
                         </div>
@@ -277,7 +286,7 @@
     </section>
 
     <!-- Отзывы -->
-    <section class="py-16 bg-gray-50">
+    <section id="reviews" class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Отзывы наших пользователей</h2>
             
@@ -352,18 +361,18 @@
     </section>
 
     <!-- Призыв к действию -->
-    <section class="gradient-bg text-white py-20">
+    <section id="cta" class="gradient-bg text-white py-20">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold mb-6">Готовы улучшить свои навыки?</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Начните решать уравнения прямо сейчас и отслеживайте свой прогресс</p>
-            <button class="bg-white text-orange-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 text-lg">
+            <button id="register-btn" class="bg-white text-orange-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 text-lg">
                 Зарегистрироваться
             </button>
         </div>
     </section>
 
     <!-- Футер -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer id="about" class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -378,19 +387,19 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Разделы</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition duration-300">Главная</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Теория</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Практика</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">О проекте</a></li>
+                        <li><a href="#home" class="hover:text-white transition duration-300">Главная</a></li>
+                        <li><a href="#theory" class="hover:text-white transition duration-300">Теория</a></li>
+                        <li><a href="#practice" class="hover:text-white transition duration-300">Практика</a></li>
+                        <li><a href="#about" class="hover:text-white transition duration-300">О проекте</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-lg font-bold mb-4">Методы</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition duration-300">ФСУ</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Группировка</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Горнер</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Безу</a></li>
+                        <li><a href="#methods" class="hover:text-white transition duration-300">ФСУ</a></li>
+                        <li><a href="#methods" class="hover:text-white transition duration-300">Группировка</a></li>
+                        <li><a href="#methods" class="hover:text-white transition duration-300">Горнер</a></li>
+                        <li><a href="#methods" class="hover:text-white transition duration-300">Безу</a></li>
                     </ul>
                 </div>
                 <div>
@@ -402,7 +411,7 @@
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-phone-alt mr-3"></i>
-                            <span>хуесос</span>
+                            <span>+7 (123) 456-78-90</span>
                         </div>
                         <div class="flex space-x-4 mt-4">
                             <a href="#" class="text-gray-400 hover:text-white transition duration-300">
@@ -425,25 +434,136 @@
     </footer>
 
     <script>
-        // Анимация для кнопки "Проверить"
-        document.querySelector('.solution-input').addEventListener('focus', function() {
-            this.parentElement.querySelector('button').classList.add('transform', 'scale-105');
+        // Мобильное меню
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
-        
-        document.querySelector('.solution-input').addEventListener('blur', function() {
-            this.parentElement.querySelector('button').classList.remove('transform', 'scale-105');
+
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Обновляем активный пункт меню
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
         });
-        
-        // Имитация проверки решения
-        document.querySelector('.bg-orange-600').addEventListener('click', function() {
-            const input = document.querySelector('.solution-input');
+
+        // Кнопка "Начать обучение"
+        document.getElementById('start-learning-btn').addEventListener('click', function() {
+            document.getElementById('methods').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Кнопка "Узнать больше"
+        document.getElementById('learn-more-btn').addEventListener('click', function() {
+            document.getElementById('theory').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Кнопки методов обучения
+        document.querySelectorAll('.method-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const method = this.getAttribute('data-method');
+                alert(`Вы выбрали метод: ${this.parentElement.querySelector('h3').textContent}`);
+                // Здесь можно добавить переход к конкретному методу обучения
+            });
+        });
+
+        // Проверка решения уравнения
+        document.getElementById('check-solution-btn').addEventListener('click', function() {
+            const input = document.getElementById('solution-input');
+            const solutionSteps = document.getElementById('solution-steps');
+            const resultMessage = document.getElementById('result-message');
+            
             if(input.value.trim() === '') {
                 alert('Пожалуйста, введите корни уравнения');
                 return;
             }
             
-            // Здесь можно добавить реальную проверку решения
-            alert('Решение проверено!');
+            // Показываем шаги решения
+            solutionSteps.classList.remove('hidden-section');
+            
+            // Проверяем ответ (простейшая проверка)
+            const userAnswer = input.value.trim().replace(/\s/g, '').split(',').sort().join(',');
+            const correctAnswer = '1,2,3';
+            
+            if(userAnswer === correctAnswer) {
+                resultMessage.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                        <span class="font-medium text-green-800">Правильно! Вы нашли все корни.</span>
+                    </div>
+                `;
+                resultMessage.className = 'mt-6 p-4 bg-green-50 border border-green-200 rounded-lg';
+            } else {
+                resultMessage.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-times-circle text-red-500 text-2xl mr-3"></i>
+                        <span class="font-medium text-red-800">Не совсем верно. Попробуйте еще раз!</span>
+                    </div>
+                `;
+                resultMessage.className = 'mt-6 p-4 bg-red-50 border border-red-200 rounded-lg';
+            }
+            
+            resultMessage.classList.remove('hidden-section');
+        });
+
+        // Кнопка подсказки
+        document.getElementById('hint-btn').addEventListener('click', function() {
+            const hintText = document.getElementById('hint-text');
+            const solutionSteps = document.getElementById('solution-steps');
+            
+            solutionSteps.classList.add('hidden-section');
+            hintText.classList.remove('hidden-section');
+            
+            // Скрываем подсказку через 5 секунд
+            setTimeout(() => {
+                hintText.classList.add('hidden-section');
+            }, 5000);
+        });
+
+        // Кнопка "Читать полную теорию"
+        document.getElementById('full-theory-btn').addEventListener('click', function() {
+            alert('Здесь будет открыта полная теория по всем методам решения уравнений высших степеней.');
+            // В реальном приложении здесь может быть переход на отдельную страницу с теорией
+        });
+
+        // Кнопка "Начать практику"
+        document.getElementById('start-practice-btn').addEventListener('click', function() {
+            document.getElementById('practice').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Кнопка "Зарегистрироваться"
+        document.getElementById('register-btn').addEventListener('click', function() {
+            alert('Форма регистрации будет открыта здесь. В реальном приложении можно подключить модальное окно или переход на страницу регистрации.');
+        });
+
+        // Анимация для кнопки "Проверить"
+        document.getElementById('solution-input').addEventListener('focus', function() {
+            this.parentElement.querySelector('button').classList.add('transform', 'scale-105');
+        });
+        
+        document.getElementById('solution-input').addEventListener('blur', function() {
+            this.parentElement.querySelector('button').classList.remove('transform', 'scale-105');
         });
     </script>
 </body>
