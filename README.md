@@ -1,2 +1,450 @@
 # lula3
-очень крутой сайт
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathMaster - Обучение уравнениям высших степеней</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF9A3E 0%, #FF6B00 100%);
+        }
+        .equation-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .equation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .solution-input {
+            transition: all 0.3s ease;
+        }
+        .solution-input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #FF6B00;
+            white-space: nowrap;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #FF6B00; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Навигация -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-square-root-alt text-3xl"></i>
+                    <span class="text-2xl font-bold">MathMaster</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="hover:text-gray-200">Главная</a>
+                    <a href="#" class="hover:text-gray-200">Теория</a>
+                    <a href="#" class="hover:text-gray-200">Практика</a>
+                    <a href="#" class="hover:text-gray-200">О проекте</a>
+                </div>
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-6">Освой уравнения высших степеней</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Интерактивное обучение методам решения уравнений от кубических до уравнений n-ной степени</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
+                    Начать обучение
+                </button>
+                <button class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-orange-600 transition duration-300">
+                    Узнать больше
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блоки обучения -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Методы решения уравнений</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Карточка 1 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-cube text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Формулы сокращенного умножения</h3>
+                    <p class="text-gray-600 mb-4">Использование ФСУ для разложения на множители и решения уравнений.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-layer-group text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Метод группировки</h3>
+                    <p class="text-gray-600 mb-4">Эффективный способ решения путем группировки слагаемых.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+                </div>
+                
+                <!-- Карточка 3 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-project-diagram text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Схема Горнера</h3>
+                    <p class="text-gray-600 mb-4">Алгоритм деления многочлена на линейный двучлен.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+                </div>
+                
+                <!-- Карточка 4 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-divide text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Теорема Безу</h3>
+                    <p class="text-gray-600 mb-4">Связь между корнями уравнения и делимостью многочлена.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+</div>
+                
+                <!-- Карточка 5 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-exchange-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Замена переменной</h3>
+                    <p class="text-gray-600 mb-4">Упрощение уравнения путем введения новой переменной.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+                </div>
+                
+                <!-- Карточка 6 -->
+                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-superscript text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Биквадратные уравнения</h3>
+                    <p class="text-gray-600 mb-4">Специальный случай уравнений четвертой степени.</p>
+                    <button class="text-orange-600 font-medium hover:text-orange-800 transition duration-300">
+                        Изучить метод →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Пример решения -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Пример решения уравнения</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-4">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Уравнение:</h3>
+                        <div class="text-2xl font-mono bg-gray-100 p-4 rounded-lg mb-6">
+                            x³ - 6x² + 11x - 6 = 0
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Ваше решение:</h3>
+                        <input type="text" placeholder="Введите корни через запятую" 
+                               class="solution-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500">
+                        
+                        <div class="flex space-x-4 mt-6">
+                            <button class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition duration-300">
+                                Проверить
+                            </button>
+                            <button class="border border-orange-600 text-orange-600 px-6 py-2 rounded-lg hover:bg-orange-50 transition duration-300">
+                                Подсказка
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-4">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Пошаговое решение:</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                                <li>Проверим x=1: 1 - 6 + 11 - 6 = 0 ⇒ x=1 корень</li>
+                                <li>Разделим многочлен на (x-1) по схеме Горнера</li>
+                                <li>Получаем: (x-1)(x² - 5x + 6) = 0</li>
+                                <li>Решаем квадратное уравнение: x² - 5x + 6 = 0</li>
+                                <li>Корни: x=2 и x=3</li>
+                                <li class="font-bold">Ответ: x ∈ {1, 2, 3}</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                                <span class="font-medium text-green-800">Правильно! Вы нашли все корни.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Теоретическая справка -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Теоретическая справка</h2>
+                    <p class="text-gray-600 mb-6">
+                        Уравнения высших степеней (степени 3 и выше) решаются различными методами, 
+                        включая разложение на множители, использование специальных формул и теорем.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Теорема Безу</h4>
+                                <p class="text-gray-600">Остаток от деления многочлена P(x) на (x - a) равен P(a).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Схема Горнера</h4>
+                                <p class="text-gray-600">Эффективный алгоритм деления многочлена на линейный двучлен.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Формулы Виета</h4>
+                                <p class="text-gray-600">Связь между корнями уравнения и его коэффициентами.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
+                        Читать полную теорию
+                    </button>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-100 rounded-xl p-8">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-square-root-alt text-6xl text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 typewriter">Попробуйте решить!</h3>
+                        <p class="text-gray-600 text-center mb-6">
+                            Наш тренажер содержит более 100 уравнений разного уровня сложности с пошаговыми решениями.
+                        </p>
+                        <div class="text-center">
+                            <button class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
+                                Начать практику
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Отзывы наших пользователей</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Отзыв 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold mr-4">
+                            АН
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Анна Н.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "Отличный тренажер! Никогда не понимала схему Горнера, пока не попробовала этот сайт. Теперь решаю кубические уравнения за пару минут."
+                    </p>
+                </div>
+                
+                <!-- Отзыв 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold mr-4">
+                            ИП
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Иван П.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "Готовлюсь к ЕГЭ по математике. Этот сайт помог мне разобраться с уравнениями высших степеней, которые раньше казались слишком сложными."
+                    </p>
+                </div>
+                
+                <!-- Отзыв 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold mr-4">
+                            ЕК
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Елена К.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "Как преподаватель математики, я рекомендую этот ресурс своим студентам. Очень хорошо структурированные материалы и отличные практические задания."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Готовы улучшить свои навыки?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Начните решать уравнения прямо сейчас и отслеживайте свой прогресс</p>
+            <button class="bg-white text-orange-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 text-lg">
+                Зарегистрироваться
+            </button>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-square-root-alt text-2xl"></i>
+                        <span class="text-xl font-bold">MathMaster</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Интерактивная платформа для обучения решению уравнений высших степеней.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Разделы</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition duration-300">Главная</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Теория</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Практика</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">О проекте</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Методы</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition duration-300">ФСУ</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Группировка</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Горнер</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Безу</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Контакты</h4>
+                    <div class="space-y-3 text-gray-400">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>contact@mathmaster.ru</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3"></i>
+                            <span>хуесос</span>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="fab fa-vk text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="fab fa-telegram text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
+                <p>© 2025 MathMaster. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация для кнопки "Проверить"
+        document.querySelector('.solution-input').addEventListener('focus', function() {
+            this.parentElement.querySelector('button').classList.add('transform', 'scale-105');
+        });
+        
+        document.querySelector('.solution-input').addEventListener('blur', function() {
+            this.parentElement.querySelector('button').classList.remove('transform', 'scale-105');
+        });
+        
+        // Имитация проверки решения
+        document.querySelector('.bg-orange-600').addEventListener('click', function() {
+            const input = document.querySelector('.solution-input');
+            if(input.value.trim() === '') {
+                alert('Пожалуйста, введите корни уравнения');
+                return;
+            }
+            
+            // Здесь можно добавить реальную проверку решения
+            alert('Решение проверено!');
+        });
+    </script>
+</body>
+</html>
