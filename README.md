@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathMaster - Обучение уравнениям высших степеней</title>
+    <title>LagutMath- Обучение уравнениям высших степеней</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -42,6 +42,9 @@
         .hidden-section {
             display: none;
         }
+        .method-section {
+            scroll-margin-top: 100px;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -51,7 +54,7 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <i class="fas fa-square-root-alt text-3xl"></i>
-                    <span class="text-2xl font-bold">MathMaster</span>
+                    <span class="text-2xl font-bold">LagutMath</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="hover:text-gray-200 nav-link active">Главная</a>
@@ -81,9 +84,6 @@
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button id="start-learning-btn" class="bg-white text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
                     Начать обучение
-                </button>
-                <button id="learn-more-btn" class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-orange-600 transition duration-300">
-                    Узнать больше
                 </button>
             </div>
         </div>
@@ -170,6 +170,113 @@
         </div>
     </section>
 
+    <!-- Теоретическая справка -->
+    <section id="theory" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Теоретическая справка</h2>
+                    <p class="text-gray-600 mb-6">
+                        Уравнения высших степеней (степени 3 и выше) решаются различными методами, 
+                        включая разложение на множители, использование специальных формул и теорем.
+                    </p>
+                    
+                    <!-- Секция метода ФСУ -->
+                    <div id="fsu-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Формулы сокращенного умножения</h3>
+                        <p class="text-gray-600 mb-4">Основные формулы:</p>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li>(a + b)² = a² + 2ab + b²</li>
+                            <li>(a - b)² = a² - 2ab + b²</li>
+                            <li>(a + b)(a - b) = a² - b²</li>
+                            <li>(a + b)³ = a³ + 3a²b + 3ab² + b³</li>
+                            <li>(a - b)³ = a³ - 3a²b + 3ab² - b³</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Секция метода группировки -->
+                    <div id="grouping-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Метод группировки</h3>
+                        <p class="text-gray-600 mb-4">Алгоритм решения:</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Сгруппировать слагаемые с общими множителями</li>
+                            <li>Вынести общий множитель за скобки в каждой группе</li>
+                            <li>Получить одинаковые выражения в скобках</li>
+                            <li>Вынести общую скобку как множитель</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Секция схемы Горнера -->
+                    <div id="horner-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Схема Горнера</h3>
+                        <p class="text-gray-600 mb-4">Алгоритм деления многочлена P(x) на (x - c):</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Записать коэффициенты многочлена</li>
+                            <li>Подставить значение c в схему</li>
+                            <li>Выполнить вычисления по схеме</li>
+                            <li>Последнее число - остаток от деления</li>
+                            <li>Если остаток 0, то c - корень многочлена</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Секция теоремы Безу -->
+                    <div id="bezout-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Теорема Безу</h3>
+                        <p class="text-gray-600 mb-4">Формулировка:</p>
+                        <p class="text-gray-700 mb-4">Остаток от деления многочлена P(x) на двучлен (x - c) равен P(c).</p>
+                        <p class="text-gray-600">Следствие:</p>
+                        <p class="text-gray-700">Число c является корнем многочлена P(x) тогда и только тогда, когда P(x) делится на (x - c) без остатка.</p>
+                    </div>
+                    
+                    <!-- Секция замены переменной -->
+                    <div id="substitution-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Замена переменной</h3>
+                        <p class="text-gray-600 mb-4">Методика:</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Выделить повторяющееся выражение</li>
+                            <li>Ввести новую переменную t = выражение</li>
+                            <li>Решить полученное уравнение относительно t</li>
+                            <li>Вернуться к исходной переменной</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Секция биквадратных уравнений -->
+                    <div id="biquadratic-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Биквадратные уравнения</h3>
+                        <p class="text-gray-600 mb-4">Общий вид:</p>
+                        <p class="text-gray-700 mb-4">ax⁴ + bx² + c = 0</p>
+                        <p class="text-gray-600">Метод решения:</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Сделать замену t = x²</li>
+                            <li>Решить квадратное уравнение at² + bt + c = 0</li>
+                            <li>Для каждого положительного корня t найти x = ±√t</li>
+                        </ol>
+                    </div>
+                    
+                    <button id="full-theory-btn" class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
+                        Читать полную теорию
+                    </button>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-100 rounded-xl p-8">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-square-root-alt text-6xl text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 typewriter">Попробуйте решить!</h3>
+                        <p class="text-gray-600 text-center mb-6">
+                            Наш тренажер содержит более 100 уравнений разного уровня сложности с пошаговыми решениями.
+                        </p>
+                        <div class="text-center">
+                            <button id="start-practice-btn" class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
+                                Начать практику
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Пример решения -->
     <section id="practice" class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
@@ -222,79 +329,7 @@
         </div>
     </section>
 
-    <!-- Теоретическая справка -->
-    <section id="theory" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Теоретическая справка</h2>
-                    <p class="text-gray-600 mb-6">
-                        Уравнения высших степеней (степени 3 и выше) решаются различными методами, 
-                        включая разложение на множители, использование специальных формул и теорем.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="bg-orange-100 p-2 rounded-full mr-4">
-                                <i class="fas fa-lightbulb text-orange-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Теорема Безу</h4>
-                                <p class="text-gray-600">Остаток от деления многочлена P(x) на (x - a) равен P(a).</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-orange-100 p-2 rounded-full mr-4">
-                                <i class="fas fa-lightbulb text-orange-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Схема Горнера</h4>
-                                <p class="text-gray-600">Эффективный алгоритм деления многочлена на линейный двучлен.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-orange-100 p-2 rounded-full mr-4">
-                                <i class="fas fa-lightbulb text-orange-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Формулы Виета</h4>
-                                <p class="text-gray-600">Связь между корнями уравнения и его коэффициентами.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button id="full-theory-btn" class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
-                        Читать полную теорию
-                    </button>
-                </div>
-                <div class="lg:w-1/2">
-                    <div class="bg-gray-100 rounded-xl p-8">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-square-root-alt text-6xl text-orange-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 typewriter">Попробуйте решить!</h3>
-                        <p class="text-gray-600 text-center mb-6">
-                            Наш тренажер содержит более 100 уравнений разного уровня сложности с пошаговыми решениями.
-                        </p>
-                        <div class="text-center">
-                            <button id="start-practice-btn" class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
-                                Начать практику
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Призыв к действию -->
-    <section id="cta" class="gradient-bg text-white py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Готовы улучшить свои навыки?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Начните решать уравнения прямо сейчас и отслеживайте свой прогресс</p>
-            <button id="register-btn" class="bg-white text-orange-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 text-lg">
-                Зарегистрироваться
-            </button>
-        </div>
-    </section>
+  
 
     <!-- Футер -->
     <footer id="about" class="bg-gray-800 text-white py-12">
@@ -303,7 +338,7 @@
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <i class="fas fa-square-root-alt text-2xl"></i>
-                        <span class="text-xl font-bold">MathMaster</span>
+                        <span class="text-xl font-bold">LagutMath</span>
                     </div>
                     <p class="text-gray-400">
                         Интерактивная платформа для обучения решению уравнений высших степеней.
@@ -321,10 +356,10 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Методы</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#methods" class="hover:text-white transition duration-300">ФСУ</a></li>
-                        <li><a href="#methods" class="hover:text-white transition duration-300">Группировка</a></li>
-                        <li><a href="#methods" class="hover:text-white transition duration-300">Горнер</a></li>
-                        <li><a href="#methods" class="hover:text-white transition duration-300">Безу</a></li>
+                        <li><a href="#fsu-method" class="hover:text-white transition duration-300">ФСУ</a></li>
+                        <li><a href="#grouping-method" class="hover:text-white transition duration-300">Группировка</a></li>
+                        <li><a href="#horner-method" class="hover:text-white transition duration-300">Горнер</a></li>
+                        <li><a href="#bezout-method" class="hover:text-white transition duration-300">Безу</a></li>
                     </ul>
                 </div>
                 <div>
@@ -332,7 +367,7 @@
                     <div class="space-y-3 text-gray-400">
                         <div class="flex items-center">
                             <i class="fas fa-envelope mr-3"></i>
-                            <span>contact@mathmaster.ru</span>
+                            <span>ahuikolou@gmail.com</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-phone-alt mr-3"></i>
@@ -353,7 +388,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-                <p>© 2025 MathMaster. Все права защищены.</p>
+                <p>© 2025 LagutMath. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -402,12 +437,23 @@
             });
         });
 
-        // Кнопки методов обучения
+        // Кнопки методов обучения - переход к соответствующему методу в теории
         document.querySelectorAll('.method-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const method = this.getAttribute('data-method');
-                alert(`Вы выбрали метод: ${this.parentElement.querySelector('h3').textContent}`);
-                // Здесь можно добавить переход к конкретному методу обучения
+                const methodSection = document.getElementById(`${method}-method`);
+                
+                if (methodSection) {
+                    methodSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Подсветка секции на 3 секунды
+                    methodSection.classList.add('bg-orange-100');
+                    setTimeout(() => {
+                        methodSection.classList.remove('bg-orange-100');
+                    }, 3000);
+                }
             });
         });
 
