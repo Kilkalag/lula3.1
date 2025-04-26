@@ -45,6 +45,13 @@
         .method-section {
             scroll-margin-top: 100px;
         }
+        .highlight-section {
+            animation: highlight 2s ease-out;
+        }
+        @keyframes highlight {
+            0% { background-color: rgba(255, 154, 62, 0.3); }
+            100% { background-color: transparent; }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -102,9 +109,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Формулы сокращенного умножения</h3>
                     <p class="text-gray-600 mb-4">Использование ФСУ для разложения на множители и решения уравнений.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="fsu">
+                    <a href="#fsu-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Карточка 2 -->
@@ -114,9 +121,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Метод группировки</h3>
                     <p class="text-gray-600 mb-4">Эффективный способ решения путем группировки слагаемых.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="grouping">
+                    <a href="#grouping-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Карточка 3 -->
@@ -126,9 +133,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Схема Горнера</h3>
                     <p class="text-gray-600 mb-4">Алгоритм деления многочлена на линейный двучлен.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="horner">
+                    <a href="#horner-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Карточка 4 -->
@@ -138,9 +145,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Теорема Безу</h3>
                     <p class="text-gray-600 mb-4">Связь между корнями уравнения и делимостью многочлена.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="bezout">
+                    <a href="#bezout-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Карточка 5 -->
@@ -150,9 +157,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Замена переменной</h3>
                     <p class="text-gray-600 mb-4">Упрощение уравнения путем введения новой переменной.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="substitution">
+                    <a href="#substitution-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Карточка 6 -->
@@ -162,9 +169,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Биквадратные уравнения</h3>
                     <p class="text-gray-600 mb-4">Специальный случай уравнений четвертой степени.</p>
-                    <button class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300" data-method="biquadratic">
+                    <a href="#biquadratic-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
                         Изучить метод →
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -254,7 +261,7 @@
                     </div>
                     
                     <button id="full-theory-btn" class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
-                        Читать полную теорию
+                        Читать полную теория
                     </button>
                 </div>
                 <div class="lg:w-1/2">
@@ -310,7 +317,7 @@
                             <ol id="solution-steps" class="list-decimal pl-5 space-y-3 text-gray-700 hidden-section">
                                 <li>Проверим x=1: 1 - 6 + 11 - 6 = 0 ⇒ x=1 корень</li>
                                 <li>Разделим многочлен на (x-1) по схеме Горнера</li>
-                                <li>Получаем: (x-1)(x² - 5x + 6) = 0</li>
+                                <li>Получаем: (x-1)(x² - 5x + 6 = 0</li>
                                 <li>Решаем квадратное уравнение: x² - 5x + 6 = 0</li>
                                 <li>Корни: x=2 и x=3</li>
                                 <li class="font-bold">Ответ: x ∈ {1, 2, 3}</li>
@@ -328,8 +335,6 @@
             </div>
         </div>
     </section>
-
-  
 
     <!-- Футер -->
     <footer id="about" class="bg-gray-800 text-white py-12">
@@ -410,15 +415,27 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // Прокрутка к элементу
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
+                    
+                    // Подсветка целевого раздела
+                    targetElement.classList.add('highlight-section');
+                    setTimeout(() => {
+                        targetElement.classList.remove('highlight-section');
+                    }, 2000);
                     
                     // Обновляем активный пункт меню
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.remove('active');
                     });
-                    this.classList.add('active');
+                    
+                    // Для мобильного меню скрываем его после выбора пункта
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.add('active');
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
                 }
             });
         });
@@ -427,33 +444,6 @@
         document.getElementById('start-learning-btn').addEventListener('click', function() {
             document.getElementById('methods').scrollIntoView({
                 behavior: 'smooth'
-            });
-        });
-
-        // Кнопка "Узнать больше"
-        document.getElementById('learn-more-btn').addEventListener('click', function() {
-            document.getElementById('theory').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Кнопки методов обучения - переход к соответствующему методу в теории
-        document.querySelectorAll('.method-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const method = this.getAttribute('data-method');
-                const methodSection = document.getElementById(`${method}-method`);
-                
-                if (methodSection) {
-                    methodSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Подсветка секции на 3 секунды
-                    methodSection.classList.add('bg-orange-100');
-                    setTimeout(() => {
-                        methodSection.classList.remove('bg-orange-100');
-                    }, 3000);
-                }
             });
         });
 
@@ -523,11 +513,6 @@
             });
         });
 
-        // Кнопка "Зарегистрироваться"
-        document.getElementById('register-btn').addEventListener('click', function() {
-            alert('Форма регистрации будет открыта здесь. В реальном приложении можно подключить модальное окно или переход на страницу регистрации.');
-        });
-
         // Анимация для кнопки "Проверить"
         document.getElementById('solution-input').addEventListener('focus', function() {
             this.parentElement.querySelector('button').classList.add('transform', 'scale-105');
@@ -535,6 +520,23 @@
         
         document.getElementById('solution-input').addEventListener('blur', function() {
             this.parentElement.querySelector('button').classList.remove('transform', 'scale-105');
+        });
+
+        // Обработка хэша при загрузке страницы
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    // Добавляем небольшую задержку для корректной прокрутки
+                    setTimeout(() => {
+                        targetElement.scrollIntoView();
+                        targetElement.classList.add('highlight-section');
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlight-section');
+                        }, 2000);
+                    }, 100);
+                }
+            }
         });
     </script>
 </body>
