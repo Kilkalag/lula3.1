@@ -3,541 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LagutMath- Обучение уравнениям высших степеней</title>
+    <title>Мастер уравнений высших степеней</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #FF9A3E 0%, #FF6B00 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e6e6e6;
         }
-        .equation-card {
+        
+        .card-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .equation-card:hover {
+        
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .block-btn {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .block-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.15);
         }
-        .solution-input {
-            transition: all 0.3s ease;
+        
+        .math-icon {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ff9966, #ff5e62);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .solution-input:focus {
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+        
+        .pulse {
+            animation: pulse 2s infinite;
         }
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #FF6B00;
-            white-space: nowrap;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #FF6B00; }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
-        .hidden-section {
-            display: none;
-        }
-        .method-section {
-            scroll-margin-top: 100px;
-        }
-        .highlight-section {
-            animation: highlight 2s ease-out;
-        }
-        @keyframes highlight {
-            0% { background-color: rgba(255, 154, 62, 0.3); }
-            100% { background-color: transparent; }
+        
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            transition: width 0.5s ease;
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
-    <!-- Навигация -->
-    <nav class="gradient-bg text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-square-root-alt text-3xl"></i>
-                    <span class="text-2xl font-bold">LagutMath</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="hover:text-gray-200 nav-link active">Главная</a>
-                    <a href="#theory" class="hover:text-gray-200 nav-link">Теория</a>
-                    <a href="#practice" class="hover:text-gray-200 nav-link">Практика</a>
-                    <a href="#about" class="hover:text-gray-200 nav-link">О проекте</a>
-                </div>
-                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+<body class="antialiased">
+    <!-- Главное меню -->
+    <div id="main-menu" class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Анимированный заголовок -->
+            <div class="floating mb-8">
+                <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                    Мастер уравнений высших степеней
+                </h1>
+                <p class="text-xl text-gray-300">Совершенствуйте свои навыки решения сложных уравнений</p>
             </div>
-            <!-- Мобильное меню -->
-            <div class="md:hidden hidden mt-4" id="mobile-menu">
-                <a href="#home" class="block py-2 hover:text-gray-200 nav-link active">Главная</a>
-                <a href="#theory" class="block py-2 hover:text-gray-200 nav-link">Теория</a>
-                <a href="#practice" class="block py-2 hover:text-gray-200 nav-link">Практика</a>
-                <a href="#about" class="block py-2 hover:text-gray-200 nav-link">О проекте</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Герой-секция -->
-    <section id="home" class="gradient-bg text-white py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold mb-6">Освой уравнения высших степеней</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Интерактивное обучение методам решения уравнений от кубических до уравнений n-ной степени</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button id="start-learning-btn" class="bg-white text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
-                    Начать обучение
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Блоки обучения -->
-    <section id="methods" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Методы решения уравнений</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Карточка 1 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-cube text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Формулы сокращенного умножения</h3>
-                    <p class="text-gray-600 mb-4">Использование ФСУ для разложения на множители и решения уравнений.</p>
-                    <a href="#fsu-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
+            <!-- Карточка с кнопками -->
+            <div class="card-glass rounded-2xl p-8 mb-12">
+                <!-- Кнопка теории -->
+                <button onclick="showTheory()" class="btn-gradient text-white font-bold py-4 px-8 rounded-full mb-6 w-full max-w-md mx-auto flex items-center justify-center">
+                    <i class="fas fa-book-open mr-3"></i> Теоретический блок
+                </button>
                 
-                <!-- Карточка 2 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-layer-group text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Метод группировки</h3>
-                    <p class="text-gray-600 mb-4">Эффективный способ решения путем группировки слагаемых.</p>
-                    <a href="#grouping-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
+                <h2 class="text-2xl font-semibold mb-6 text-white">Практические блоки</h2>
                 
-                <!-- Карточка 3 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-project-diagram text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Схема Горнера</h3>
-                    <p class="text-gray-600 mb-4">Алгоритм деления многочлена на линейный двучлен.</p>
-                    <a href="#horner-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
-                
-                <!-- Карточка 4 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-divide text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Теорема Безу</h3>
-                    <p class="text-gray-600 mb-4">Связь между корнями уравнения и делимостью многочлена.</p>
-                    <a href="#bezout-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
-                
-                <!-- Карточка 5 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-exchange-alt text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Замена переменной</h3>
-                    <p class="text-gray-600 mb-4">Упрощение уравнения путем введения новой переменной.</p>
-                    <a href="#substitution-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
-                
-                <!-- Карточка 6 -->
-                <div class="equation-card bg-white rounded-xl p-6 border border-gray-200">
-                    <div class="text-orange-600 mb-4">
-                        <i class="fas fa-superscript text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Биквадратные уравнения</h3>
-                    <p class="text-gray-600 mb-4">Специальный случай уравнений четвертой степени.</p>
-                    <a href="#biquadratic-method" class="method-btn text-orange-600 font-medium hover:text-orange-800 transition duration-300">
-                        Изучить метод →
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Теоретическая справка -->
-    <section id="theory" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Теоретическая справка</h2>
-                    <p class="text-gray-600 mb-6">
-                        Уравнения высших степеней (степени 3 и выше) решаются различными методами, 
-                        включая разложение на множители, использование специальных формул и теорем.
-                    </p>
+                <!-- Блоки задач -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="startBlock(1)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-square-root-alt"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Виды уравнений</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Изучите различные типы уравнений высших степеней</p>
+                    </button>
                     
-                    <!-- Секция метода ФСУ -->
-                    <div id="fsu-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Формулы сокращенного умножения</h3>
-                        <p class="text-gray-600 mb-4">Основные формулы:</p>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                            <li>(a + b)² = a² + 2ab + b²</li>
-                            <li>(a - b)² = a² - 2ab + b²</li>
-                            <li>(a + b)(a - b) = a² - b²</li>
-                            <li>(a + b)³ = a³ + 3a²b + 3ab² + b³</li>
-                            <li>(a - b)³ = a³ - 3a²b + 3ab² - b³</li>
-                        </ul>
-                    </div>
+                    <button onclick="startBlock(2)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Решение по ФСУ</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Применение формул сокращенного умножения</p>
+                    </button>
                     
-                    <!-- Секция метода группировки -->
-                    <div id="grouping-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Метод группировки</h3>
-                        <p class="text-gray-600 mb-4">Алгоритм решения:</p>
-                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                            <li>Сгруппировать слагаемые с общими множителями</li>
-                            <li>Вынести общий множитель за скобки в каждой группе</li>
-                            <li>Получить одинаковые выражения в скобках</li>
-                            <li>Вынести общую скобку как множитель</li>
-                        </ol>
-                    </div>
+                    <button onclick="startBlock(3)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-function"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Метод группировки</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Группировка слагаемых для упрощения</p>
+                    </button>
                     
-                    <!-- Секция схемы Горнера -->
-                    <div id="horner-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Схема Горнера</h3>
-                        <p class="text-gray-600 mb-4">Алгоритм деления многочлена P(x) на (x - c):</p>
-                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                            <li>Записать коэффициенты многочлена</li>
-                            <li>Подставить значение c в схему</li>
-                            <li>Выполнить вычисления по схеме</li>
-                            <li>Последнее число - остаток от деления</li>
-                            <li>Если остаток 0, то c - корень многочлена</li>
-                        </ol>
-                    </div>
+                    <button onclick="startBlock(4)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Схема Горнера</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Эффективное деление многочленов</p>
+                    </button>
                     
-                    <!-- Секция теоремы Безу -->
-                    <div id="bezout-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Теорема Безу</h3>
-                        <p class="text-gray-600 mb-4">Формулировка:</p>
-                        <p class="text-gray-700 mb-4">Остаток от деления многочлена P(x) на двучлен (x - c) равен P(c).</p>
-                        <p class="text-gray-600">Следствие:</p>
-                        <p class="text-gray-700">Число c является корнем многочлена P(x) тогда и только тогда, когда P(x) делится на (x - c) без остатка.</p>
-                    </div>
+                    <button onclick="startBlock(5)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Теорема Безу</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Поиск корней среди делителей</p>
+                    </button>
                     
-                    <!-- Секция замены переменной -->
-                    <div id="substitution-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Замена переменной</h3>
-                        <p class="text-gray-600 mb-4">Методика:</p>
-                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                            <li>Выделить повторяющееся выражение</li>
-                            <li>Ввести новую переменную t = выражение</li>
-                            <li>Решить полученное уравнение относительно t</li>
-                            <li>Вернуться к исходной переменной</li>
-                        </ol>
-                    </div>
-                    
-                    <!-- Секция биквадратных уравнений -->
-                    <div id="biquadratic-method" class="method-section mb-8 p-6 bg-orange-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Биквадратные уравнения</h3>
-                        <p class="text-gray-600 mb-4">Общий вид:</p>
-                        <p class="text-gray-700 mb-4">ax⁴ + bx² + c = 0</p>
-                        <p class="text-gray-600">Метод решения:</p>
-                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                            <li>Сделать замену t = x²</li>
-                            <li>Решить квадратное уравнение at² + bt + c = 0</li>
-                            <li>Для каждого положительного корня t найти x = ±√t</li>
-                        </ol>
-                    </div>
-                    
-                    <button id="full-theory-btn" class="mt-8 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300">
-                        Читать полную теория
+                    <button onclick="startBlock(6)" class="block-btn rounded-xl p-6 text-left group">
+                        <div class="flex items-center mb-3">
+                            <div class="math-icon mr-3">
+                                <i class="fas fa-superscript"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Новая переменная</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm">Упрощение уравнений заменой</p>
                     </button>
                 </div>
-                <div class="lg:w-1/2">
-                    <div class="bg-gray-100 rounded-xl p-8">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-square-root-alt text-6xl text-orange-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 typewriter">Попробуйте решить!</h3>
-                        <p class="text-gray-600 text-center mb-6">
-                            Наш тренажер содержит более 100 уравнений разного уровня сложности с пошаговыми решениями.
-                        </p>
-                        <div class="text-center">
-                            <button id="start-practice-btn" class="border-2 border-orange-600 text-orange-600 font-bold py-3 px-8 rounded-full hover:bg-orange-600 hover:text-white transition duration-300">
-                                Начать практику
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Пример решения -->
-    <section id="practice" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Пример решения уравнения</h2>
             
-            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/2 p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Уравнение:</h3>
-                        <div class="text-2xl font-mono bg-gray-100 p-4 rounded-lg mb-6">
-                            x³ - 6x² + 11x - 6 = 0
-                        </div>
-                        
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Ваше решение:</h3>
-                        <input type="text" id="solution-input" placeholder="Введите корни через запятую" 
-                               class="solution-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500">
-                        
-                        <div class="flex space-x-4 mt-6">
-                            <button id="check-solution-btn" class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition duration-300">
-                                Проверить
-                            </button>
-                            <button id="hint-btn" class="border border-orange-600 text-orange-600 px-6 py-2 rounded-lg hover:bg-orange-50 transition duration-300">
-                                Подсказка
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Пошаговое решение:</h3>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <ol id="solution-steps" class="list-decimal pl-5 space-y-3 text-gray-700 hidden-section">
-                                <li>Проверим x=1: 1 - 6 + 11 - 6 = 0 ⇒ x=1 корень</li>
-                                <li>Разделим многочлен на (x-1) по схеме Горнера</li>
-                                <li>Получаем: (x-1)(x² - 5x + 6 = 0</li>
-                                <li>Решаем квадратное уравнение: x² - 5x + 6 = 0</li>
-                                <li>Корни: x=2 и x=3</li>
-                                <li class="font-bold">Ответ: x ∈ {1, 2, 3}</li>
-                            </ol>
-                            <div id="hint-text" class="hidden-section">
-                                <p class="text-gray-700">Попробуйте подставить x=1 в уравнение. Если результат равен 0, то это корень.</p>
-                            </div>
-                        </div>
-                        
-                        <div id="result-message" class="mt-6 p-4 hidden-section">
-                            <!-- Здесь будет отображаться результат проверки -->
-                        </div>
-                    </div>
+            <!-- Выход -->
+            <button onclick="exitApp()" class="text-gray-400 hover:text-white mt-8">
+                <i class="fas fa-sign-out-alt mr-2"></i> Выход
+            </button>
+        </div>
+    </div>
+    
+    <!-- Теоретический блок (скрыт по умолчанию) -->
+    <div id="theory-section" class="hidden container mx-auto px-4 py-12 max-w-4xl">
+        <button onclick="showMainMenu()" class="flex items-center text-gray-400 hover:text-white mb-8">
+            <i class="fas fa-arrow-left mr-2"></i> Назад
+        </button>
+        
+        <div class="card-glass rounded-2xl p-8">
+            <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Теоретический материал
+            </h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-semibold mb-3">Решение уравнений высших степеней</h3>
+                
+                <h4 class="font-semibold mt-6 mb-2">1. Основные понятия:</h4>
+                <p>Уравнение высшей степени - это уравнение вида:</p>
+                <p class="text-center text-xl my-4 font-mono bg-gray-800 p-3 rounded-lg">
+                    P(x) = 0, где P(x) — многочлен степени n ≥ 3
+                </p>
+                <p>Примеры: x³ - 6x² + 11x - 6 = 0 (кубическое), x⁴ - 5x² + 4 = 0 (биквадратное).</p>
+                
+                <h4 class="font-semibold mt-6 mb-2">2. Методы решения:</h4>
+                
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <h5 class="font-semibold text-blue-400">Разложение на множители:</h5>
+                    <p>Ищите общие множители или используйте формулы сокращенного умножения.</p>
+                </div>
+                
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <h5 class="font-semibold text-green-400">Метод группировки:</h5>
+                    <p>Группируйте слагаемые так, чтобы можно было вынести общий множитель.</p>
+                </div>
+                
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <h5 class="font-semibold text-purple-400">Схема Горнера:</h5>
+                    <p>Позволяет делить многочлен на (x - c) и находить корни.</p>
+                </div>
+                
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <h5 class="font-semibold text-yellow-400">Теорема Безу:</h5>
+                    <p>Если a — корень, то P(x) делится на (x - a) без остатка.</p>
+                </div>
+                
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <h5 class="font-semibold text-red-400">Метод заменя:</h5>
+                    <p>Заменяйте часть уравнения новой переменной (например, x² = t).</p>
+                </div>
+                
+                <h4 class="font-semibold mt-6 mb-2">3. Пример:</h4>
+                <div class="mt-6 p-5 bg-gray-800 bg-opacity-50 rounded-xl">
+                    <p>Уравнение: x³ - 6x² + 11x - 6 = 0</p>
+                    <p>- По теореме Безу: x = 1 — корень.</p>
+                    <p>- Делим многочлен на (x - 1): получаем квадратное уравнение.</p>
+                    <p>- Решаем квадратное уравнение: x = 2, x = 3.</p>
+                    <p class="font-bold mt-2">Ответ: x ∈ {1, 2, 3}.</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Футер -->
-    <footer id="about" class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i class="fas fa-square-root-alt text-2xl"></i>
-                        <span class="text-xl font-bold">LagutMath</span>
-                    </div>
-                    <p class="text-gray-400">
-                        Интерактивная платформа для обучения решению уравнений высших степеней.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Разделы</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#home" class="hover:text-white transition duration-300">Главная</a></li>
-                        <li><a href="#theory" class="hover:text-white transition duration-300">Теория</a></li>
-                        <li><a href="#practice" class="hover:text-white transition duration-300">Практика</a></li>
-                        <li><a href="#about" class="hover:text-white transition duration-300">О проекте</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Методы</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#fsu-method" class="hover:text-white transition duration-300">ФСУ</a></li>
-                        <li><a href="#grouping-method" class="hover:text-white transition duration-300">Группировка</a></li>
-                        <li><a href="#horner-method" class="hover:text-white transition duration-300">Горнер</a></li>
-                        <li><a href="#bezout-method" class="hover:text-white transition duration-300">Безу</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Контакты</h4>
-                    <div class="space-y-3 text-gray-400">
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope mr-3"></i>
-                            <span>ahuikolou@gmail.com</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-phone-alt mr-3"></i>
-                            <span>+7 (123) 456-78-90</span>
-                        </div>
-                        <div class="flex space-x-4 mt-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                                <i class="fab fa-vk text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                                <i class="fab fa-telegram text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                                <i class="fab fa-youtube text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
+    </div>
+    
+    <!-- Блок с задачей (скрыт по умолчанию) -->
+    <div id="problem-section" class="hidden container mx-auto px-4 py-12 max-w-4xl">
+        <button onclick="showMainMenu()" class="flex items-center text-gray-400 hover:text-white mb-8">
+            <i class="fas fa-arrow-left mr-2"></i> Назад
+        </button>
+        
+        <div class="card-glass rounded-2xl p-8">
+            <!-- Заголовок блока -->
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="block-title" class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"></h2>
+                <div class="flex items-center">
+                    <span id="problem-counter" class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm"></span>
+                    <span id="score-counter" class="ml-3 bg-green-500 text-white px-3 py-1 rounded-full text-sm"></span>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-                <p>© 2025 LagutMath. Все права защищены.</p>
+            
+            <!-- Прогресс бар -->
+            <div class="w-full bg-gray-700 rounded-full h-2 mb-8">
+                <div id="progress-bar" class="progress-bar h-2 rounded-full"></div>
+            </div>
+            
+            <!-- Текст задачи -->
+            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 mb-8">
+                <p id="problem-text" class="text-lg"></p>
+            </div>
+            
+            <!-- Поле для ответа -->
+            <div class="mb-8">
+                <label for="answer-input" class="block text-sm font-medium text-gray-300 mb-2">Ваш ответ:</label>
+                <input type="text" id="answer-input", class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400" placeholder="Введите ответ...">
+                <p class="text-xs text-gray-400 mt-1">Для нескольких ответов разделяйте их запятыми (например: 1, -2, 3.5)</p>
+            </div>
+            
+            <!-- Кнопки -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="checkAnswer()" class="btn-gradient text-white font-bold py-3 px-6 rounded-lg flex-1 flex items-center justify-center">
+                    <i class="fas fa-check-circle mr-2"></i> Проверить
+                </button>
+                <button onclick="showHint()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg flex-1 flex items-center justify-center">
+                    <i class="fas fa-lightbulb mr-2"></i> Подсказка
+                </button>
             </div>
         </div>
-    </footer>
-
+    </div>
+    
+    <!-- Результаты (скрыт по умолчанию) -->
+    <div id="results-section" class="hidden container mx-auto px-4 py-12 max-w-2xl">
+        <div class="card-glass rounded-2xl p-8 text-center">
+            <div class="p-8">
+                <div id="result-icon" class="text-8xl mb-6 mx-auto"></div>
+                <h2 id="result-title" class="text-3xl font-bold mb-4"></h2>
+                <p id="result-score" class="text-xl mb-8"></p>
+                <p id="result-message" class="text-lg mb-8"></p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="retryBlock()" class="btn-gradient text-white font-bold py-3 px-6 rounded-lg">
+                        <i class="fas fa-redo mr-2"></i> Попробовать еще раз
+                    </button>
+                    <button onclick="showMainMenu()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg">
+                        <i class="fas fa-home mr-2"></i> В главное меню
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Подсказка (модальное окно) -->
+    <div id="hint-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-4">
+        <div class="card-glass rounded-2xl p-8 max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-blue-400">
+                    <i class="fas fa-lightbulb mr-2"></i> Подсказка
+                </h3>
+                <button onclick="closeHint()", class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="hint-text" class="text-gray-200"></p>
+            <button onclick="closeHint()" class="btn-gradient text-white font-bold py-2 px-4 rounded-lg mt-6 w-full">
+                Понятно
+            </button>
+        </div>
+    </div>
+    
     <script>
-        // Мобильное меню
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Плавная прокрутка для навигации
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Прокрутка к элементу
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Подсветка целевого раздела
-                    targetElement.classList.add('highlight-section');
-                    setTimeout(() => {
-                        targetElement.classList.remove('highlight-section');
-                    }, 2000);
-                    
-                    // Обновляем активный пункт меню
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    
-                    // Для мобильного меню скрываем его после выбора пункта
-                    if (this.classList.contains('nav-link')) {
-                        this.classList.add('active');
-                        document.getElementById('mobile-menu').classList.add('hidden');
-                    }
-                }
-            });
-        });
-
-        // Кнопка "Начать обучение"
-        document.getElementById('start-learning-btn').addEventListener('click', function() {
-            document.getElementById('methods').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Проверка решения уравнения
-        document.getElementById('check-solution-btn').addEventListener('click', function() {
-            const input = document.getElementById('solution-input');
-            const solutionSteps = document.getElementById('solution-steps');
-            const resultMessage = document.getElementById('result-message');
+        // Текущее состояние приложения
+        const appState = {
+            currentBlock: 0,
+            currentProblem: 0,
+            score: 0,
+            problems: [],
+            blockNames: {
+                1: "Виды уравнений",
+                2: "Решение по ФСУ",
+                3: "Метод группировки",
+                4: "Схема Горнера",
+                5: "Теорема Безу",
+                6: "Новая переменная"
+            },
+            hints: {
+                1: "Попробуйте разложить на множители или использовать подстановку.",
+                2: "Вспомните формулы разности квадратов, кубов и квадрата суммы/разности.",
+                3: "Сгруппируйте слагаемые так, чтобы можно было вынести общий множитель.",
+                4: "Ищите целые корни среди делителей свободного члена.",
+                5: "Пробуйте подставлять делители свободного члена в уравнение.",
+                6: "Попробуйте заменить часть уравнения новой переменной (например, x² = t)."
+            }
+        };
+        
+        // Показать главное меню
+        function showMainMenu() {
+            document.getElementById('main-menu').classList.remove('hidden');
+            document.getElementById('theory-section').classList.add('hidden');
+            document.getElementById('problem-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('hidden');
+        }
+        
+        // Показать теорию
+        function showTheory() {
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('theory-section').classList.remove('hidden');
+        }
+        
+        // Начать блок задач
+        function startBlock(blockNum) {
+            appState.currentBlock = blockNum;
+            appState.currentProblem = 0;
+            appState.score = 0;
+            appState.problems = generateProblems(blockNum);
             
-            if(input.value.trim() === '') {
-                alert('Пожалуйста, введите корни уравнения');
+            showProblem();
+        }
+        
+        // Генерация задач (теперь 12 задач вместо 5)
+        function generateProblems(blockNum) {
+            const problems = [];
+            
+            for (let i = 0; i < 12; i++) { // Изменено с 5 на 12
+                let question, answer;
+                
+                switch (blockNum) {
+                    case 1: // Виды уравнений
+                        const eqType = Math.floor(Math.random() * 3) + 1;
+                        if (eqType === 1) { // Кубическое уравнение
+                            const roots = [randomInt(-3, 3), randomInt(-3, 3), randomInt(-3, 3)].sort((a, b) => a - b);
+                            question = `Решите уравнение: (x - ${roots[0]})(x - ${roots[1]})(x - ${roots[2]}) = 0`;
+                            answer = roots;
+                        } else if (eqType === 2) { // Биквадратное уравнение
+                            const b = [1, 4, 9][Math.floor(Math.random() * 3)];
+                            question = `Решите уравнение: x⁴ - ${b}x² = 0`;
+                            answer = [-Math.sqrt(b), 0, Math.sqrt(b)].map(x => Math.round(x));
+                        } else { // Уравнение с кратными корнями
+                            const root = randomInt(-2, 2);
+                            const power = randomInt(2, 3);
+                            question = `Решите уравнение: (x - ${root})^${power} = 0`;
+                            answer = Array(power).fill(root);
+                        }
+                        break;
+                        
+                    case 2: // Решение по ФСУ
+                        const fsuType = Math.floor(Math.random() * 3) + 1;
+                        if (fsuType === 1) { // Разность квадратов
+                            const a = randomInt(1, 5);
+                            question = `Решите уравнение: x² - ${a*a} = 0`;
+                            answer = [-a, a];
+                        } else if (fsuType === 2) { // Разность кубов
+                            const a = randomInt(1, 3);
+                            question = `Решите уравнение: x³ - ${a*a*a} = 0`;
+                            answer = [a];
+                        } else { // Квадрат суммы/разности
+                            const a = randomInt(1, 3);
+                            const b = randomInt(1, 3);
+                            if (Math.random() > 0.5) {
+                                question = `Решите уравнение: x² + ${2*a*b}x + ${a*b*a*b} = 0`;
+                                answer = [-a*b];
+                            } else {
+                                question = `Решите уравнение: x² - ${2*a*b}x + ${a*b*a*b} = 0`;
+                                answer = [a*b];
+                            }
+                        }
+                        break;
+                        
+                    case 3: // Метод группировки
+                        const roots = [randomInt(-3, 3), randomInt(-3, 3), randomInt(-3, 3)].sort((a, b) => a - b);
+                        const sum = roots[0] + roots[1] + roots[2];
+                        const sumPairs = roots[0]*roots[1] + roots[0]*roots[2] + roots[1]*roots[2];
+                        const product = roots[0] * roots[1] * roots[2];
+                        question = `Решите уравнение: x³ - ${sum}x² + ${sumPairs}x - ${product} = 0`;
+                        answer = roots;
+                        break;
+                        
+                    case 4: // Схема Горнера
+                        const root = randomInt(-3, 3);
+                        const a = randomInt(1, 3);
+                        const b = randomInt(-5, 5);
+                        const c = -root * b;
+                        question = `Решите уравнение: ${a}x³ + ${b - a*root}x² + ${c - b*root}x - ${c*root} = 0`;
+                        answer = [root, -Math.floor(c/b)].sort((x, y) => x - y);
+                        break;
+                        
+                    case 5: // Теорема Безу
+                        const possibleRoots = [-3, -2, -1, 1, 2, 3];
+                        const selectedRoots = [];
+                        const numRoots = randomInt(1, 3);
+                        for (let j = 0; j < numRoots; j++) {
+                            const idx = Math.floor(Math.random() * possibleRoots.length);
+                            selectedRoots.push(possibleRoots[idx]);
+                            possibleRoots.splice(idx, 1);
+                        }
+                        question = `Решите уравнение: ${selectedRoots.map(r => `(x - ${r})`).join(' * ')} = 0`;
+                        answer = selectedRoots.sort((x, y) => x - y);
+                        break;
+                        
+                    case 6: // Новая переменная
+                        const subType = Math.floor(Math.random() * 2) + 1;
+                        if (subType === 1) { // Биквадратное
+                            const b = [1, 4, 9][Math.floor(Math.random() * 3)];
+                            question = `Решите уравнение: x⁴ - ${b}x² = 0`;
+                            answer = [-Math.sqrt(b), 0, Math.sqrt(b)].map(x => Math.round(x));
+                        } else { // Уравнение вида x(x² + kx + m) = 0
+                            const k = randomInt(1, 3);
+                            const m = randomInt(1, 3);
+                            question = `Решите уравнение: x³ + ${k}x² + ${m}x = 0`;
+                            const discriminant = k*k - 4*m;
+                            answer = [0];
+                            if (discriminant >= 0) {
+                                const x1 = Math.round((-k + Math.sqrt(discriminant)) / 2);
+                                const x2 = Math.round((-k - Math.sqrt(discriminant)) / 2);
+                                answer.push(x1, x2);
+                            }
+                            answer.sort((x, y) => x - y);
+                        }
+                        break;
+                }
+                
+                // Удаляем дубликаты и сортируем
+                answer = [...new Set(answer)].sort((a, b) => a - b);
+                problems.push({ question, answer });
+            }
+            
+            return problems;
+        }
+        
+        // Показать текущую задачу
+        function showProblem() {
+            if (appState.currentProblem >= appState.problems.length) {
+                showResults();
                 return;
             }
             
-            // Показываем шаги решения
-            solutionSteps.classList.remove('hidden-section');
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('problem-section').classList.remove('hidden');
             
-            // Проверяем ответ (простейшая проверка)
-            const userAnswer = input.value.trim().replace(/\s/g, '').split(',').sort().join(',');
-            const correctAnswer = '1,2,3';
+            const problem = appState.problems[appState.currentProblem];
             
-            if(userAnswer === correctAnswer) {
-                resultMessage.innerHTML = `
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
-                        <span class="font-medium text-green-800">Правильно! Вы нашли все корни.</span>
-                    </div>
-                `;
-                resultMessage.className = 'mt-6 p-4 bg-green-50 border border-green-200 rounded-lg';
-            } else {
-                resultMessage.innerHTML = `
-                    <div class="flex items-center">
-                        <i class="fas fa-times-circle text-red-500 text-2xl mr-3"></i>
-                        <span class="font-medium text-red-800">Не совсем верно. Попробуйте еще раз!</span>
-                    </div>
-                `;
-                resultMessage.className = 'mt-6 p-4 bg-red-50 border border-red-200 rounded-lg';
-            }
+            // Обновляем UI
+            document.getElementById('block-title').textContent = 
+                `Блок ${appState.currentBlock}: ${appState.blockNames[appState.currentBlock]}`;
             
-            resultMessage.classList.remove('hidden-section');
-        });
-
-        // Кнопка подсказки
-        document.getElementById('hint-btn').addEventListener('click', function() {
-            const hintText = document.getElementById('hint-text');
-            const solutionSteps = document.getElementById('solution-steps');
+            document.getElementById('problem-counter').textContent = 
+                `${appState.currentProblem + 1}/${appState.problems.length}`;
             
-            solutionSteps.classList.add('hidden-section');
-            hintText.classList.remove('hidden-section');
+            document.getElementById('score-counter').textContent = 
+                `Счет: ${appState.score}`;
             
-            // Скрываем подсказку через 5 секунд
-            setTimeout(() => {
-                hintText.classList.add('hidden-section');
-            }, 5000);
-        });
-
-        // Кнопка "Читать полную теорию"
-        document.getElementById('full-theory-btn').addEventListener('click', function() {
-            alert('Здесь будет открыта полная теория по всем методам решения уравнений высших степеней.');
-            // В реальном приложении здесь может быть переход на отдельную страницу с теорией
-        });
-
-        // Кнопка "Начать практику"
-        document.getElementById('start-practice-btn').addEventListener('click', function() {
-            document.getElementById('practice').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Анимация для кнопки "Проверить"
-        document.getElementById('solution-input').addEventListener('focus', function() {
-            this.parentElement.querySelector('button').classList.add('transform', 'scale-105');
-        });
+            document.getElementById('problem-text').textContent = problem.question;
+            document.getElementById('answer-input').value = '';
+            
+            // Обновляем прогресс бар
+            const progress = ((appState.currentProblem) / appState.problems.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
         
-        document.getElementById('solution-input').addEventListener('blur', function() {
-            this.parentElement.querySelector('button').classList.remove('transform', 'scale-105');
-        });
-
-        // Обработка хэша при загрузке страницы
-        window.addEventListener('load', function() {
-            if (window.location.hash) {
-                const targetElement = document.querySelector(window.location.hash);
-                if (targetElement) {
-                    // Добавляем небольшую задержку для корректной прокрутки
-                    setTimeout(() => {
-                        targetElement.scrollIntoView();
-                        targetElement.classList.add('highlight-section');
-                        setTimeout(() => {
-                            targetElement.classList.remove('highlight-section');
-                        }, 2000);
-                    }, 100);
-                }
+        // Проверить ответ
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim();
+            const correctAnswer = appState.problems[appState.currentProblem].answer;
+            
+            if (!userAnswer) {
+                alert('Пожалуйста, введите ответ!');
+                return;
             }
-        });
+            
+            try {
+                // Разделяем ответы пользователя
+                const userAnswers = userAnswer.split(',')
+                    .map(x => x.trim())
+                    .filter(x => x !== '')
+                    .map(x => parseInt(x))
+                    .sort((a, b) => a - b);
+                
+                // Проверяем ответы
+                const isCorrect = JSON.stringify(userAnswers) === JSON.stringify(correctAnswer);
+                
+                if (isCorrect) {
+                    appState.score++;
+                    showFeedback(true, correctAnswer.join(', '));
+                } else {
+                    showFeedback(false, correctAnswer.join(', '));
+                }
+                
+                appState.currentProblem++;
+                setTimeout(showProblem, 1500);
+            } catch (e) {
+                alert('Ошибка при проверке ответа. Проверьте формат ввода.');
+                console.error(e);
+            }
+        }
+        
+        // Показать обратную связь
+        function showFeedback(isCorrect, correctAnswer) {
+            const modal = document.createElement('div');
+            modal.className = `fixed inset-0 flex items-center justify-center z-50 ${isCorrect ? 'bg-green-500' : 'bg-red-500'} bg-opacity-70`;
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-8 max-w-sm w-full text-center">
+                    <div class="text-6xl mb-4">${isCorrect ? '✅' : '❌'}</div>
+                    <h3 class="text-2xl font-bold mb-2">${isCorrect ? 'Правильно!' : 'Неверно'}</h3>
+                    ${!isCorrect ? `<p class="mb-2">Правильный ответ: <span class="font-mono">${correctAnswer}</span></p>` : ''}
+                    <button onclick="this.parentElement.parentElement.remove()" class="mt-4 ${isCorrect ? 'bg-green-500' : 'bg-red-500'} text-white font-bold py-2 px-6 rounded-lg">
+                        Продолжить
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        // Показать подсказку
+        function showHint() {
+            document.getElementById('hint-text').textContent = appState.hints[appState.currentBlock];
+            document.getElementById('hint-modal').classList.remove('hidden');
+        }
+        
+        // Закрыть подсказку
+        function closeHint() {
+            document.getElementById('hint-modal').classList.add('hidden');
+        }
+        
+        // Показать результаты
+        function showResults() {
+            document.getElementById('problem-section').classList.add('hidden');
+            document.getElementById('results-section').classList.remove('hidden');
+            
+            const totalProblems = appState.problems.length;
+            const percentage = Math.round((appState.score / totalProblems) * 100);
+            
+            // Устанавливаем иконку результата
+            const resultIcon = document.getElementById('result-icon');
+            if (percentage === 100) {
+                resultIcon.innerHTML = '<i class="fas fa-trophy text-yellow-400"></i>';
+            } else if (percentage >= 80) {
+                resultIcon.innerHTML = '<i class="fas fa-star text-blue-400"></i>';
+            } else if (percentage >= 50) {
+                resultIcon.innerHTML = '<i class="fas fa-check-circle text-green-400"></i>';
+            } else {
+                resultIcon.innerHTML = '<i class="fas fa-redo text-red-400"></i>';
+            }
+            
+            // Устанавливаем текст
+            document.getElementById('result-title').textContent = 
+                `Блок ${appState.currentBlock} завершен!`;
+            document.getElementById('result-score').textContent = 
+                `Ваш результат: ${appState.score} из ${totalProblems}`;
+            
+            const resultMessage = document.getElementById('result-message');
+            if (percentage === 100) {
+                resultMessage.textContent = 'Идеальный результат! Вы настоящий мастер уравнений!';
+                resultMessage.className = 'text-lg text-yellow-400';
+            } else if (percentage >= 80) {
+                resultMessage.textContent = 'Отличный результат! Продолжайте в том же духе!';
+                resultMessage.className = 'text-lg text-blue-400';
+            } else if (percentage >= 50) {
+                resultMessage.textContent = 'Хороший результат! Еще немного практики!';
+                resultMessage.className = 'text-lg text-green-400';
+            } else {
+                resultMessage.textContent = 'Попробуйте еще раз и изучите теорию внимательнее!';
+                resultMessage.className = 'text-lg text-red-400';
+            }
+        }
+        
+        // Повторить блок
+        function retryBlock() {
+            startBlock(appState.currentBlock);
+        }
+        
+        // Выйти из приложения
+        function exitApp() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                alert('Спасибо за использование приложения!');
+            }
+        }
+        
+        // Вспомогательная функция для генерации случайных целых чисел
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
     </script>
 </body>
 </html>
